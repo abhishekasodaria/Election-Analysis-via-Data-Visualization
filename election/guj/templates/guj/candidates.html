@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+{% extends 'guj/base.html'%}
+{%load staticfiles%}
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="{%static 'guj/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{%static 'guj/css/bootstrap.theme.min.css' %}">
+	<script src="js/jquery.min.js"></script>
+</head>
+<body>
+<h1>Candidate Info</h1>
+{%if candidates%}=
+{%block content%}
+	<br>
+		
+	<h5>Currently Viewing {{header}}</h5>
+  	
+	<div style="overflow-y: auto;height: 465px;"><table class="table table-bordered table-hover" style="margin-top: -5px;">
+		
+		<thead style="font-style: italic;font-size: 19px">
+			<tr style="position: sticky;top: 0;">
+				<th style="position: sticky;top:-1px;background: gray;color: white;">Candidate</th>
+				<th style="position: sticky;top:-1px;background: gray;color: white;">Party</th>
+				<th style="position: sticky;top:-1px;background: gray;color: white;">Votes</th>
+				<th style="position: sticky;top:-1px;background: gray;color: white;">Per_Votes</th>
+				<th style="position: sticky;top:-1px;background: gray;color: white;"></th>
+			</tr>
+		<!-- <th>taluka_id</th> -->
+		</thead>
+		<tbody>			
+			{%for can in candidates%}
+				<tr style="background: #e8e7e7;">
+					{% if header|lower == 'amreli candidates' %}
+						<td>
+							<a href="{% url 'amreli_candidate_detail' can.pk %}">{{can.Candidate}}</a>
+						</td>
+					{% elif header|lower == 'lathi candidates' %}
+						<td>
+							<a href="{% url 'lathi_candidate_detail' can.pk %}">{{can.Candidate}}</a>
+						</td>
+					{% elif header|lower == 'dhari candidates' %}
+						<td>
+							<a href="{% url 'dhari_candidate_detail' can.pk %}">{{can.Candidate}}</a>
+						</td>
+					{% elif header|lower == 'dhari compare' %}
+						<td>
+							<a href="{% url 'dhari_compare_detail' can.pk %}">{{can.Candidate}}</a>
+						</td>
+					{% elif header|lower == 'amreli compare' %}
+						<td>
+							<a href="{% url 'amreli_compare_detail' can.pk %}">{{can.Candidate}}</a>
+						</td>
+					{% else %}
+						<td>
+							<a href="{% url 'lathi_compare_detail' can.pk %}">{{can.Candidate}}</a>
+						</td>
+					{% endif %}
+					<td><b><i>{{can.Party}}</i></b></td>
+					<td><b><i>{{can.Votes}}</i></b></td>
+					<td><b><i>{{can.Per_Votes}}</i></b></td>
+					{% if header|lower == 'amreli candidates' %}
+						<td><a href="{% url 'edit_amreli' can.pk %}" class="btn btn-warning btn-sm">Edit</a>
+						<a href="{% url 'delete_amreli' can.pk %}" class="btn btn-danger btn-sm">Delete</a></td>
+					{% elif header|lower == 'lathi candidates' %}
+						<td><a href="{% url 'edit_lathi' can.pk %}" class="btn btn-warning btn-sm">Edit</a>
+						<a href="{% url 'delete_lathi' can.pk %}" class="btn btn-danger btn-sm">Delete</a></td>
+					{% else %}
+						<td><a href="{% url 'edit_dhari' can.pk %}" class="btn btn-warning btn-sm">Edit</a>
+						<a href="{% url 'delete_dhari' can.pk %}" class="btn btn-danger btn-sm">Delete</a></td>
+					{% endif %}
+				</tr>
+			{%endfor%}
+		</tbody>		
+		
+	</table>
+	</div><br>
+	<button onclick="goBack()" class="btn btn-primary btn-md">Go Back</button>
+
+	<script>
+		function goBack() {
+  		window.history.back();
+		}
+	</script>
+	<button onclick="goForward()" class="btn btn-success btn-md">Go Forward</button>
+	<script>
+		function goForward(){window.history.forward()}
+	</script>
+	<!--<button id="eventClick">Chart</button>
+	<script type="text/javascript">document.getElementById("eventClick").onclick = function () {
+        location.href = "http://127.0.0.1:8000/charts";};</script>-->
+    <!--<button id="abhishek">Add Candidate</button>
+    <script type="text/javascript">document.getElementById("abhishek").onclick = function(){location.href = "http://127.0.0.1:8000/add_form/<str:cls>";};</script>-->
+    {% if header|lower == 'dhari candidates' %}
+			<a href="{% url 'add_dhari' %}" class="btn btn-warning btn-md" role = 'button' style="margin-left: 0px">Add Candidate</a>
+
+	{% elif header|lower == 'amreli candidates' %}
+		<a href="{% url 'add_amreli' %}" class="btn btn-warning btn-md" role = 'button' style="margin-left: 0px">Add Candidate</a>
+
+	{% else %}
+		<a href="{% url 'add_lathi' %}" class="btn btn-warning btn-md" role = 'button' style="margin-left: 0px">Add Candidate</a>
+
+	{% endif %}
+
+    {% if header|lower == 'amreli candidates' %}
+    	<a href="{% url 'amreli_chart' %}" class="btn btn-info btn-md">Chart</a>
+    {% elif header|lower == 'lathi candidates' %}
+    	<a href="{% url 'lathi_chart' %}" class="btn btn-info btn-md">Chart</a>
+    {% elif header|lower == 'dhari candidates' %}
+    	<a href="{% url 'dhari_chart' %}" class="btn btn-info btn-md">Chart</a>
+    {% elif header|lower == 'dhari compare' %}
+    	<a href="{% url 'dhari_compare_chart'%}" class="btn btn-info btn-md">Chart</a>
+    {% elif header|lower == 'amreli compare' %}
+    	<a href="{% url 'amreli_compare_chart'%}" class="btn btn-info btn-md">Chart</a>
+    {% elif header|lower == 'lathi compare' %}
+    	<a href="{% url 'lathi_compare_chart'%}" class="btn btn-info btn-md">Chart</a>
+    {% else%}
+    	<a href="#" class="btn btn-default btn-lg">Chart</a>
+    {% endif %}
+
+{%endblock%}
+{%else%}
+<p>No record found</p>
+{%endif%}
+
+
+
+</body>
+</html>

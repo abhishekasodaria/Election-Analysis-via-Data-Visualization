@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load staticfiles%}
+<html>
+<head>
+	<title>Home Compare</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  	<style>
+  		#myInput{
+    	padding:2px;
+    	margin-top: -366px;
+    	margin-left: 20px;
+    	border-collapse: 0px;
+    	border: 2;
+    	border-color:lightblue;
+    	border-radius: 30px;
+    	background:white;
+    	border-width: 0px;
+    	text-align : center;
+  			}
+  		.pad15 {
+    		padding: 15px;
+  			}
+  		
+  	</style>
+</head>
+<body>
+<img src="{% static 'guj/image/home1.jpg'%}" style="height:689px; width: 100%">
+<h2 class="pad15" style="margin-left: 550px;margin-top: -450px;margin-bottom: 10px">Election
+<span style="color:orange">Data</span></h2>
+<center><div class="dropdown">
+    <input id = 'myInput' class= "dropdown-toggle" type="text" data-toggle="dropdown" placeholder="Search City">
+    <ul class="dropdown-menu" style="left: 566px;top: 93%;background-color: #f2dede;box-shadow: #31708f9e">
+	  	<li style="text-align: center;"><a style="background-color: #d9edf7" href="{% url 'dhari_compare' %}">Dhari</a></li>
+      	<li style="text-align: center;"><a style="background-color: #d9edf7;" href="{% url 'amreli_compare' %}">Amreli</a></li>
+      	<li style="text-align: center;"><a style="background-color: #d9edf7" href="{% url 'lathi_compare' %}">Lathi</a></li>     
+    </ul>
+  </div>
+</div></center>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{%load staticfiles%}
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'guj/css/bootstrap.min.css'}">
+</head>
+<body style="margin-top: 230px;margin-left: 390px">
+	<div class="container">
+		{% block body %}
+			<div class = 'container'>
+				<form method="POST">
+					{% csrf_token %}
+					{% for field in form%}
+						<div class="form-group row">
+							<label for="id_{{field.id}}" class="col-2 col-form-label">{{field.label}}</label>
+						<div class="col-10">
+							{{ field }}
+						</div>
+						</div>
+					{% endfor %}		
+				<button type="submit" class="btn btn-info btn-lg" name="button" onclick="goBack()">Edit Candidate</button>
+				<script>function goBack(){
+					window.history.back();
+				}</script>	
+				</form>
+			</div>
+		{% endblock %}
+
+	</div>
+</body>

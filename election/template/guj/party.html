@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'guj/base.html'%}
+{%load staticfiles%}
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="{%static 'guj/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{%static 'guj/css/bootstrap.theme.min.css' %}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="js/jquery.min.js"></script>
+</head>
+<body>
+	<br>
+<h4>Party Info</h4><br>
+{%if party%}
+{%block content%}
+<br>
+<h4>Currently Viewing {{header}}</h4>
+<div><table class="table table-bordered table-hover" style="margin-top: 30px">
+	<thead style="color: white;font-style: italic;font-size: 19px;background : gray">
+		<th>Party</th>
+		<th>Seats_Won</th>
+	</thead>
+	<tbody>
+		{% for par in party %}
+		<tr>
+			<td>{{par.Party}}</td>
+			<td>{{par.Seats_Won}}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>
+<button class="btn btn-info btn-lg" id="myChart">Chart</button>
+<script type="text/javascript">document.getElementById('myChart').onclick = function(){
+	location.href = 'http://127.0.0.1:8000/pchart';};
+</script>
+{%endblock%}
+{%else}
+<p>No record Found</p>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+	<script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>	
+</head>
+<body>
+<div id = 'chart-1'>{{output|safe }}</div>
+<button id = "eventClick" style="margin-left: 50px;margin-top: 50px" class="btn btn-primary btn-lg">Home Page</button>
+<script type="text/javascript">document.getElementById("eventClick").onclick = function () {location.href = "http://127.0.0.1:8000/aa";};
+</script> 
+</body>
+</html>

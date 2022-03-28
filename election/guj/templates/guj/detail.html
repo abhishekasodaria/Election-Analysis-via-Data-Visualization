@@ -1,0 +1,27 @@
+{% extends 'guj/base.html' %}
+
+{% block content%}
+	<dl>
+		<dt>Candidates</dt>
+		<dd>{{candidate.Candidate}}</dd>
+		<dt>Party</dt>
+		<dd>{{candidate.Party}}</dd>
+		<dt>Votes</dt>
+		<dd>{{candidate.Votes}}</dd>
+		<dt>Per_Votes</dt>
+		<dd>{{candidate.Per_Votes}}</dd>
+	</dl>
+	<div>
+		
+			<button onclick="goBack()">Go Back</button>
+			<script>
+				function goBack() {
+  					window.history.back();
+				}
+			</script>
+			<button id = "eventClick">Home Page</button>
+			<script type="text/javascript">document.getElementById("eventClick").onclick = function () {location.href = "http://127.0.0.1:8000/aa";};
+			</script> 
+
+	</div>
+{%endblock%}
